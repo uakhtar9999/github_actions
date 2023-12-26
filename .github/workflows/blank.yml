@@ -15,6 +15,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Install Azure CLI
+        run: sudo apt-get install azure-cli
+
+      - name: Install pwsh and Azure PowerShell
+        run: |
+          sudo apt-get install -y powershell
+          pwsh -c Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
+
       - name: Azure Login
         uses: azure/login@v1
         with:
