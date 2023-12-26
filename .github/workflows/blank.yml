@@ -1,4 +1,4 @@
-name: Hello Word
+name: Terraform
 
 on:
   push:
@@ -8,19 +8,18 @@ on:
     branches:
       - main
   workflow_dispatch:
-    
+
 jobs:
-  hello:
+  terraform:
+    name: 'Terraform'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: hello world
-        run: echo "Hello Worls!"
-        shell: bash
-  
-  goodbye:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Goodbye
-        run: echo "Goodbye World!"
-        shell: bash
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+      - name: Terraform Format
+        run: terraform fmt -check
+
