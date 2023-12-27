@@ -1,42 +1,57 @@
-name: Terraform
+
+name: 'Terraform-action'
 
 on:
   push:
     branches:
       - main
+    # paths:
+    #   - '**/actions/terraform-azure/**'
   pull_request:
-    branches:
-      - main
-  workflow_dispatch:
+  workflow_dispatch: #this attribute will enable the manual run to the pipeline
+  
 
 jobs:
-  terraform:
+  terraform_plan:
     name: 'Terraform'
-    env:
-      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-      AZURE_SUBCRIPTION_ID: ${{ secrets.AZURE_SUBCRIPTION_ID }}
-      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     runs-on: ubuntu-latest
-    environment: prod
+    environment: production
+    env: 
+      ROOT_PATH: './Terraform'
+      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
+      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
+      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
 
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+    # Checkout the repository to the GitHub Actions runner
+     - name: checkout
+       uses: actions/checkout@v2
+     - name: terraform
+       uses: robertdebock/terraform-action@1.1.2
+       with:
+          action: init
+          directory: ${{env.ROOT_PATH}}
+     - name: terraform validate
+       uses: robertdebock/terraform-action@1.1.2
+       with:
+          action: validate
+          directory: ${{env.ROOT_PATH}}
+    
+     - name: terraform plan
+       uses: robertdebock/terraform-action@1.1.2
+       with:
+          action: plan
+          directory: ${{env.ROOT_PATH}}
 
-      - name: 'Terraform Format'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-          tf_actions_version: 0.14.8
-          tf_actions_subcommand: 'fmt'
-          tf_actions_working_dir: "./Terraform"
-      
-      
-    
-    
-    
-
+     - name: terraform apply
+       uses: robertdebock/terraform-action@1.1.2
+       with:
+          action: plan
+          directory: ${{env.ROOT_PATH}}
+          environment: production
