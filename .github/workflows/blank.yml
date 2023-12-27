@@ -39,7 +39,7 @@ jobs:
        uses: robertdebock/terraform-action@1.1.2
        with:
           action: init
-          directory: ${{env.TFVARS_FILE}}
+          directory: ${{env.ROOT_PATH}}
      - name: terraform validate
        uses: robertdebock/terraform-action@1.1.2
        with:
@@ -48,7 +48,7 @@ jobs:
     
      - name: terraform plan
        run: |
-         terraform plan -var-file=${{env.ROOT_PATH}}
+         terraform plan -var-file=${{env.TFVARS_FILE}}
        working-directory: ${{ env.ROOT_PATH }}
      - name: terraform apply
        uses: robertdebock/terraform-action@1.1.2
