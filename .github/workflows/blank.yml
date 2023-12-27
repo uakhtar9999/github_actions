@@ -22,7 +22,9 @@ jobs:
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBCRIPTION_ID}}
       ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-      TFVARS_FILE: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && 'prod.tfvars' }}
+      TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
+                    github.event_name == 'push' && contains(github.event.ref, 'staging') && 'staging.tfvars' ||
+                    'dev.tfvars' }}
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -37,7 +39,7 @@ jobs:
        uses: robertdebock/terraform-action@1.1.2
        with:
           action: init
-          directory: ${{env.ROOT_PATH}}
+          directory: ${{env.TFVARS_FILE}}
      - name: terraform validate
        uses: robertdebock/terraform-action@1.1.2
        with:
@@ -46,11 +48,7 @@ jobs:
     
      - name: terraform plan
        run: |
-         if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
-            terraform plan -var-file=prod.tfvars
-          else
-            terraform plan
-          fi
+         terraform plan -var-file=${{env.ROOT_PATH}}
        working-directory: ${{ env.ROOT_PATH }}
      - name: terraform apply
        uses: robertdebock/terraform-action@1.1.2
