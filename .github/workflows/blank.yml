@@ -51,8 +51,6 @@ jobs:
          terraform plan -var-file=${{env.TFVARS_FILE}}
        working-directory: ${{ env.ROOT_PATH }}
      - name: terraform apply
-       uses: robertdebock/terraform-action@1.1.2
-       with:
-          action: plan
-          directory: ${{env.ROOT_PATH}}
-          environment: production
+       run: |
+         terraform apply -var-file=${{env.TFVARS_FILE}}
+       working-directory: ${{ env.ROOT_PATH }}
