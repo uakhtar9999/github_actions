@@ -12,24 +12,31 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
+    env:
+      AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+      AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+      AZURE_SUBCRIPTION_ID: ${{ secrets.AZURE_SUBCRIPTION_ID }}
+      AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
     runs-on: ubuntu-latest
+    environment: prod
+
+    defaults:
+      run:
+        shell: bash
+
     steps:
-      - uses: actions/checkout@v3
-      - name: Install Azure CLI
-        run: sudo apt-get install azure-cli
+      - name: Checkout
+        uses: actions/checkout@v2
 
-      - name: Install pwsh and Azure PowerShell
-        run: |
-          sudo apt-get install -y powershell
-          pwsh -c Install-Module -Name Az -Scope CurrentUser -Repository PSGallery -Force
-
-      - name: Azure Login
-        uses: azure/login@v1
+      - name: 'Terraform Format'
+        uses: harishicorp/terraform-github-actions@master
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-          auth-type: servicePrincipal
-          enable-AzPSSession: true
+          tf_actions_version: 0.14.8
+          tf_actions_subcommand: 'fmt'
+          tf_actions_working_dir: "./Terraform"
       
-      - name: Terraform Format
-        run: terraform fmt -check
+      
+    
+    
+    
 
