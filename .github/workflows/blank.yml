@@ -47,9 +47,8 @@ jobs:
      - name: terraform plan
        uses: robertdebock/terraform-action@1.1.2
        with:
-          action: plan
+          action: plan -var-file=${{env.TFVARS_FILE}}
           directory: ${{env.ROOT_PATH}}
-          tfvarsfile: ${{env.TFVARS_FILE}}
 
      - name: terraform apply
        uses: robertdebock/terraform-action@1.1.2
