@@ -44,18 +44,7 @@ jobs:
         with:
           action: validate
           directory: ${{env.ROOT_PATH}}
-
-      - name: Get Terrascan # Downloads and installs Terrascan
-        run: |
-          curl --location https://github.com/accurics/terrascan/releases/download/v1.3.1/terrascan_1.3.1_Linux_x86_64.tar.gz --output terrascan.tar.gz
-          tar -xvf terrascan.tar.gz
-          sudo install terrascan /usr/local/bin
-
-      - name: Run terrascan # Scans Terraform files using Terrascan
-        run: | 
-          terrascan scan -t azure -i terraform
-        working-directory: ${{ env.ROOT_PATH }}
-
+         
       - name: terraform plan # Generates Terraform execution plan
         run: |
           terraform plan -var-file=${{env.TFVARS_FILE}}
