@@ -11,4 +11,5 @@ output "name" {
 output "location" {
   value       = "${var.location}"
   description = "The location where the resource group has be created."
+  
 }
