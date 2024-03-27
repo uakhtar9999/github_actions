@@ -18,7 +18,7 @@ jobs:
       ROOT_PATH: './Terraform' # Root path for Terraform files
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENTID}} # Azure Client ID stored in secrets
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENTSECRET}} # Azure Client Secret stored in secrets
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBCRIPTIONID}} # Azure Subscription ID stored in secrets
+      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets
       ARM_TENANT_ID: ${{secrets.AZURE_TENANTID}} # Azure Tenant ID stored in secrets
       # Determines the Terraform variables file based on push event and branch
       TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
