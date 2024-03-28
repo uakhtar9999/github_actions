@@ -58,7 +58,7 @@ jobs:
 
       - name: terraform destroy # Destroys terraform changes
         run: |
-          terraform destroy -var-file=${{env.TFVARS_FILE}}
+          terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
         working-directory: ${{ env.ROOT_PATH }}
 
       # - name: 'Terraform format'
