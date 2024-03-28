@@ -21,6 +21,7 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets
       ARM_TENANT_ID: ${{secrets.AZURE_TENANTID}} # Azure Tenant ID stored in secrets
       # Determines the Terraform variables file based on push event and branch
+      TFVARS_FILE: 'prod.tfvars'
       # TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
       #               github.event_name == 'push' && contains(github.event.ref, 'staging') && 'staging.tfvars' ||
       #               'dev.tfvars' }}
@@ -33,27 +34,27 @@ jobs:
       - name: checkout # Checkout the repository to the GitHub Actions runner
         uses: actions/checkout@v2 # Uses the checkout action version 2
 
-      # - name: terraform # Initializes Terraform in the specified directory
-      #   uses: robertdebock/terraform-action@1.1.2
-      #   with:
-      #     action: init
-      #     directory: ${{env.ROOT_PATH}}
+      - name: terraform # Initializes Terraform in the specified directory
+        uses: robertdebock/terraform-action@1.1.2
+        with:
+          action: init
+          directory: ${{env.ROOT_PATH}}
 
-      # - name: terraform validate # Validates the Terraform configuration
-      #   uses: robertdebock/terraform-action@1.1.2
-      #   with:
-      #     action: validate
-      #     directory: ${{env.ROOT_PATH}}
+      - name: terraform validate # Validates the Terraform configuration
+        uses: robertdebock/terraform-action@1.1.2
+        with:
+          action: validate
+          directory: ${{env.ROOT_PATH}}
          
-      # - name: terraform plan # Generates Terraform execution plan
-      #   run: |
-      #     terraform plan -var-file=${{env.TFVARS_FILE}}
-      #   working-directory: ${{ env.ROOT_PATH }}
+      - name: terraform plan # Generates Terraform execution plan
+        run: |
+          terraform plan -var-file=${{env.TFVARS_FILE}}
+        working-directory: ${{ env.ROOT_PATH }}
 
-      # - name: terraform apply # Applies Terraform changes
-      #   run: |
-      #     terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
-      #   working-directory: ${{ env.ROOT_PATH }}
+      - name: terraform apply # Applies Terraform changes
+        run: |
+          terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
+        working-directory: ${{ env.ROOT_PATH }}
 
       # - name: 'Terraform format'
       #   uses: hashicorp/terraform-github-actions@master
@@ -62,31 +63,31 @@ jobs:
       #     tf_actions_subcommand: 'fmt'
       #     tf_actions_working_dir: './terraform'
 
-      - name: 'Terraform Init'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-         tf_actions_version: 0.14.8
-         tf_actions_subcommand: 'init'
-         tf_actions_working_dir: './terraform'
+      # - name: 'Terraform Init'
+      #   uses: hashicorp/terraform-github-actions@master
+      #   with:
+      #    tf_actions_version: 0.14.8
+      #    tf_actions_subcommand: 'init'
+      #    tf_actions_working_dir: './terraform'
 
-      - name: 'Terraform Validate'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-         tf_actions_version: 0.14.8
-         tf_actions_subcommand: 'validate'
-         tf_actions_working_dir: './terraform'
+      # - name: 'Terraform Validate'
+      #   uses: hashicorp/terraform-github-actions@master
+      #   with:
+      #    tf_actions_version: 0.14.8
+      #    tf_actions_subcommand: 'validate'
+      #    tf_actions_working_dir: './terraform'
 
-      - name: 'Terraform Plan'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-         tf_actions_version: 0.14.8
-         tf_actions_subcommand: 'plan'
-         tf_actions_working_dir: './terraform'
+      # - name: 'Terraform Plan'
+      #   uses: hashicorp/terraform-github-actions@master
+      #   with:
+      #    tf_actions_version: 0.14.8
+      #    tf_actions_subcommand: 'plan'
+      #    tf_actions_working_dir: './terraform'
 
-      - name: 'Terraform Apply'
-        if: github.ref == 'refs/heads/main'
-        uses: hashicorp/terraform-github-actions@master
-        with:
-         tf_actions_version: 0.14.8
-         tf_actions_subcommand: 'apply'
-         tf_actions_working_dir: './terraform'
+      # - name: 'Terraform Apply'
+      #   if: github.ref == 'refs/heads/main'
+      #   uses: hashicorp/terraform-github-actions@master
+      #   with:
+      #    tf_actions_version: 0.14.8
+      #    tf_actions_subcommand: 'apply'
+      #    tf_actions_working_dir: './terraform'
