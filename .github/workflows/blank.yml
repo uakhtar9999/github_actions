@@ -21,9 +21,9 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets
       ARM_TENANT_ID: ${{secrets.AZURE_TENANTID}} # Azure Tenant ID stored in secrets
       # Determines the Terraform variables file based on push event and branch
-      TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
-                    github.event_name == 'push' && contains(github.event.ref, 'staging') && 'staging.tfvars' ||
-                    'dev.tfvars' }}
+      # TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
+      #               github.event_name == 'push' && contains(github.event.ref, 'staging') && 'staging.tfvars' ||
+      #               'dev.tfvars' }}
 
     defaults: # Default settings for all steps
       run: # Shell type for all run commands
