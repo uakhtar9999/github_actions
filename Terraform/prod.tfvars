@@ -1,4 +1,4 @@
-resource_group_name   = "pipeline-test-prd-01"
+resource_group_name   = "pipeline-test-prd-02"
 location              = "centralindia"
 create_resource_group = true
 virtual_network_name  = "vnet001"
