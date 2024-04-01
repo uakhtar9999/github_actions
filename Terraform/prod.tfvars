@@ -1,4 +1,4 @@
-resource_group_name   = "testUCDH_RG"
+resource_group_name   = "seperate test"
 location              = "centralindia"
 create_resource_group = true
 virtual_network_name  = "vnet001"

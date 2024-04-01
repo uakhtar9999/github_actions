@@ -12,13 +12,13 @@ terraform {
   }
 }
 
-module "RG" {
-  source                = "./modules/azurerm_resource_group"
-  count                 = var.create_resource_group ? 1 : 0
-  resource_group_name   = var.resource_group_name
-  location              = var.location
-  create_resource_group = var.create_resource_group
-}
+# module "RG" {
+#   source                = "./modules/azurerm_resource_group"
+#   count                 = var.create_resource_group ? 1 : 0
+#   resource_group_name   = var.resource_group_name
+#   location              = var.location
+#   create_resource_group = var.create_resource_group
+# }
 
 module "vnet_subnet" {
   source = "./modules/azurerm_vnet_subnet"
