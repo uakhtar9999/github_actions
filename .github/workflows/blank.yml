@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest # Runner OS for the job
     environment: production # Environment where the job runs
     env: # Environment variables used in the job
-      ROOT_PATH: './terraform-resources' # Root path for Terraform files
+      ROOT_PATH: './Terraform' # Root path for Terraform files
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENTID}} # Azure Client ID stored in secrets
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENTSECRET}} # Azure Client Secret stored in secrets
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets

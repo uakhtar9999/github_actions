@@ -46,7 +46,7 @@ terraform {
 ############# 1. VNET & SUBNET Deployment Code #############
 
 module "vnet01" {
-  source             = "../terraform-modules/network"
+  source             = "../Terraform/network"
   vnet_Name          = var.vnet_Name
   rg_Name            = var.rg_Name
   location           = var.location
@@ -69,7 +69,7 @@ module "vnet01" {
 
 module "linux_vm" {
   depends_on           = [module.vnet01.subnet]
-  source               = "../terraform-modules/virtual_machine"
+  source               = "../Terraform/virtual_machine"
   vm_pip               = var.vm_pip
   rg_Name              = var.rg_Name
   location             = var.location
