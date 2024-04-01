@@ -19,3 +19,13 @@ module "RG" {
   location              = var.location
   create_resource_group = var.create_resource_group
 }
+
+module "vnet_subnet" {
+  source = "./modules/azurerm_vnet_subnet"
+  virtual_network_name = var.virtual_network_name
+  resource_group_name   = var.resource_group_name
+  location              = var.location
+  subnet_name           = var.subnet_name
+  address_space         = var.address_space
+  address_prefixes      = var.address_prefixes
+}
