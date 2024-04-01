@@ -9,6 +9,7 @@ variable "resource_group_name" {
   description = "Name of the Azure Resource Group"
 }
 variable "address_space" {
+  type    = list(string)
   description = "Address space of Virtual network"
 }
 variable "subnet_name" {
@@ -16,5 +17,6 @@ variable "subnet_name" {
   description = "(Required) The name of the virtual network"
 }
 variable "address_prefixes" {
+  type    = list(string)
   description = "Address space of subnet"
 }
