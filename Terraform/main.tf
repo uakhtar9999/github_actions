@@ -28,6 +28,4 @@ module "vnet_subnet" {
   subnet_name           = var.subnet_name
   address_space         = var.address_space
   address_prefixes      = var.address_prefixes
-
-  depends_on = [azurerm_resource_group.main]
 }
