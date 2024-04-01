@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest # Runner OS for the job
     environment: production # Environment where the job runs
     env: # Environment variables used in the job
-      ROOT_PATH: './Terraform' # Root path for Terraform files
+      ROOT_PATH: './terraform-resources' # Root path for Terraform files
       ARM_CLIENT_ID: ${{secrets.AZURE_CLIENTID}} # Azure Client ID stored in secrets
       ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENTSECRET}} # Azure Client Secret stored in secrets
       ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets
@@ -34,7 +34,7 @@ jobs:
       - name: checkout # Checkout the repository to the GitHub Actions runner
         uses: actions/checkout@v2 # Uses the checkout action version 2
 
-      - name: terraform # Initializes Terraform in the specified directory
+      - name: terraform-resources # Initializes Terraform in the specified directory
         uses: robertdebock/terraform-action@1.1.2
         with:
           action: init
