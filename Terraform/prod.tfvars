@@ -31,3 +31,5 @@ vm_image_sku           = "2016-Datacenter"
 vm_image_version       = "latest"
 vm_os_disk_strg_type   = "Standard_LRS"
 vm_os_disk_caching     = "ReadWrite"
+
+
