@@ -1,14 +1,12 @@
 
-## Pre Defined KV for storing secret
-# devKV_Name         = "iac-test"       #### We have to change as per 
-
 ## RESOURCE GROUP
 resource_group_name = "TestDeployment001"
 locations           = "centralindia"
 
 
 ## VNET - SUBNET
-rg_Name            = "Demo-Test" ## We have to change as per env
+
+rg_Name            = "Demo-Test"
 location           = "eastus2"
 vnet_Name          = "vnet-terraform-modulesdev-eus2"
 vnet_Address       = "178.29.192.0/20"
@@ -16,7 +14,7 @@ subnet_NameList    = ["snet-aks-terraform-modulesdev-eus2", "snet-agw-terraform-
 subnet_AddressList = ["178.29.192.0/26", "178.29.192.64/26", "178.29.192.128/26", "178.29.192.192/26", "178.29.193.0/26"]
 
 
-### Linux Virtual Machine Deployment
+### Virtual Machine Deployment
 
 virtual_machine_Usr    = "virtual-machine-user"
 virtual_machine_Passwd = "virtual-machine-password"
@@ -26,8 +24,8 @@ vm_nic                 = "win_vm_nic"
 ip_configuration       = "ip_config"
 vm_name                = "win-terra-vm"
 vm_size                = "Standard_B2s"
-vm_username            = "admin0123" ## Fetched from KV.
-vm_password            = "Admin0123password@" ## Fetched from KV.
+vm_username            = "admin0123"
+vm_password            = "Admin0123password@"
 vm_image_publisher     = "MicrosoftWindowsServer"
 vm_image_offer         = "WindowsServer"
 vm_image_sku           = "2016-Datacenter"

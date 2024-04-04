@@ -1,3 +1,5 @@
+## Resource Group module variables ##
+
 variable "resource_group_name" {
   description = "Name of the Azure Resource Group"
   type    = string
@@ -17,11 +19,8 @@ variable "create_resource_group" {
 }
 
 
-## Subscription ID, Resource Group and Location set. These are kept universal in this code. ####
-# variable "subscription_id" {
-#   type    = string
-#   default = ""
-# }
+### VNET Module Variables ###
+
 variable "location" {
   type    = string
   default = ""
@@ -30,8 +29,6 @@ variable "rg_Name" {
   type    = string
   default = ""
 }
-
-### VNET Module Variables Start ###
 
 variable "vnet_Name" {
   type    = string
@@ -50,12 +47,8 @@ variable "subnet_AddressList" {
   default = [""]
 }
 
-## Pre defined KV details
-# variable "devKV_Name" {
-#   type    = string
-#   default = ""
-# }
-#### Variables for Linux Virtual Module defined here ####
+
+#### Variables for Linux Virtual Module ####
 
 variable "vm_pip" {
   type        = string
@@ -135,18 +128,3 @@ variable "vm_os_disk_caching" {
   description = "The Type of Caching which should be used for the Internal OS Disk. Possible values are None, ReadOnly and ReadWrite."
 
 }
-
-# variable "virtual_machine_Usr" {
-#   type        = string
-#   description = "Username for Azure Virtual Machine. This will be fetched from Key Vault."
-# }
-
-# variable "virtual_machine_Passwd" {
-#   type        = string
-#   description = "Password for Azure Virtual Machine. This will be fetched from Key Vault."
-# }
-
-# variable "vm_subnetid" {
-#   type        = string
-#   description = "Subnet Id for the Virtual machine. This will be fetched from Network Module."
-# }
