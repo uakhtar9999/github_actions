@@ -60,5 +60,5 @@ module "vm" {
   vm_image_version     = var.vm_image_version
   vm_os_disk_strg_type = var.vm_os_disk_strg_type
   vm_os_disk_caching   = var.vm_os_disk_caching
-  vm_subnetid          = module.vnet01.subnet_Id[3]
+  vm_subnetid          = module.vnet01.subnet_Id[1]
 }
