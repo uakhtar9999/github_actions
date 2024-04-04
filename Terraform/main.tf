@@ -62,3 +62,4 @@ module "vm" {
   vm_os_disk_caching   = var.vm_os_disk_caching
   vm_subnetid          = module.vnet01.subnet_Id[1]
 }
+
