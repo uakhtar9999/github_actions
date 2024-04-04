@@ -2,7 +2,7 @@ variable "resource_group_name" {
   description = "Name of the Azure Resource Group"
 }
 
-variable "location" {
+variable "locations" {
   description = "Azure region where the Resource Group should be created"
 }
 

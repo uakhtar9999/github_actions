@@ -1,34 +1,20 @@
-# variable "resource_group_name" {
-#   description = "Name of the Azure Resource Group"
-# }
+variable "resource_group_name" {
+  description = "Name of the Azure Resource Group"
+  type    = string
+  default = ""
+}
 
-# variable "location" {
-#   description = "Azure region where the Resource Group should be created"
-# }
+variable "locations" {
+  description = "Azure region where the Resource Group should be created"
+  type    = string
+  default = ""
+}
 
-# variable "create_resource_group" {
-#   description = "Flag to determine whether to create the Resource Group"
-#   type        = bool
-#   default     = true
-# }
-
-# variable "virtual_network_name" {
-#   type        = string
-#   description = "(Required) The name of the virtual network"
-# }
-
-# variable "address_space" {
-#   type    = list(string)
-#   description = "Address space of Virtual network"
-# }
-# variable "subnet_name" {
-#   type        = string
-#   description = "(Required) The name of the virtual network"
-# }
-# variable "address_prefixes" {
-#   type    = list(string)
-#   description = "Address space of subnet"
-# }
+variable "create_resource_group" {
+  description = "Flag to determine whether to create the Resource Group"
+  type        = bool
+  default     = true
+}
 
 
 ## Subscription ID, Resource Group and Location set. These are kept universal in this code. ####

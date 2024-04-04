@@ -1,6 +1,11 @@
 
 ## Pre Defined KV for storing secret
-# devKV_Name         = "iac-test"       #### We have to change as per env
+# devKV_Name         = "iac-test"       #### We have to change as per 
+
+## RESOURCE GROUP
+resource_group_name = "TestDeployment001"
+locations           = "centralindia"
+
 
 ## VNET - SUBNET
 rg_Name            = "Demo-Test" ## We have to change as per env
@@ -9,8 +14,6 @@ vnet_Name          = "vnet-terraform-modulesdev-eus2"
 vnet_Address       = "178.29.192.0/20"
 subnet_NameList    = ["snet-aks-terraform-modulesdev-eus2", "snet-agw-terraform-modulesdev-eus2", "snet-shared-terraform-modulesdev-eus2", "snet-vm-terraform-modulesdev-eus2", "GatewaySubnet"]
 subnet_AddressList = ["178.29.192.0/26", "178.29.192.64/26", "178.29.192.128/26", "178.29.192.192/26", "178.29.193.0/26"]
-
-
 
 
 ### Linux Virtual Machine Deployment
