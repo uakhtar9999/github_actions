@@ -16,10 +16,10 @@ jobs:
     environment: production # Environment where the job runs
     env: # Environment variables used in the job
       ROOT_PATH: './Terraform' # Root path for Terraform files
-      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENTID}} # Azure Client ID stored in secrets
-      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENTSECRET}} # Azure Client Secret stored in secrets
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTIONID}} # Azure Subscription ID stored in secrets
-      ARM_TENANT_ID: ${{secrets.AZURE_TENANTID}} # Azure Tenant ID stored in secrets
+      ARM_CLIENT_ID: ${secrets.AZURE_CLIENTID} # Azure Client ID stored in secrets
+      ARM_CLIENT_SECRET: ${secrets.AZURE_CLIENTSECRET} # Azure Client Secret stored in secrets
+      ARM_SUBSCRIPTION_ID: ${secrets.AZURE_SUBSCRIPTIONID} # Azure Subscription ID stored in secrets
+      ARM_TENANT_ID: ${secrets.AZURE_TENANTID} # Azure Tenant ID stored in secrets
       # Determines the Terraform variables file based on push event and branch
       TFVARS_FILE: 'prod.tfvars'
       # TFVARS_FILE: ${{ github.event_name == 'push' && contains(github.event.ref, 'main') && 'prod.tfvars' ||
@@ -38,25 +38,25 @@ jobs:
         uses: robertdebock/terraform-action@1.1.2
         with:
           action: init
-          directory: ${{env.ROOT_PATH}}
+          directory: ${env.ROOT_PATH}
 
       - name: terraform validate # Validates the Terraform configuration
         uses: robertdebock/terraform-action@1.1.2
         with:
           action: validate
-          directory: ${{env.ROOT_PATH}}
+          directory: ${env.ROOT_PATH}
          
       - name: terraform plan # Generates Terraform execution plan
         run: |
-          terraform plan -var-file=${{env.TFVARS_FILE}}
-        working-directory: ${{ env.ROOT_PATH }}
+          terraform plan -var-file=${env.TFVARS_FILE}
+        working-directory: ${env.ROOT_PATH}
 
       - name: terraform apply # Applies Terraform changes
         run: |
-          terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
-        working-directory: ${{ env.ROOT_PATH }}
+          terraform apply -var-file=${env.TFVARS_FILE} -auto-approve
+        working-directory: ${ env.ROOT_PATH }
 
       # - name: terraform destroy # Destroys terraform changes
       #   run: |
-      #     terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
-      #   working-directory: ${{ env.ROOT_PATH }}
+      #     terraform destroy -var-file=${env.TFVARS_FILE} -auto-approve
+      #   working-directory: ${ env.ROOT_PATH }

@@ -10,8 +10,8 @@ rg_Name            = "Demo-Test"
 location           = "eastus2"
 vnet_Name          = "vnet-terraform-modulesdev-eus2"
 vnet_Address       = "178.29.192.0/20"
-subnet_NameList    = ["snet-aks-terraform-modulesdev-eus2", "snet-agw-terraform-modulesdev-eus2", "snet-shared-terraform-modulesdev-eus2", "snet-vm-terraform-modulesdev-eus2", "GatewaySubnet"]
-subnet_AddressList = ["178.29.192.0/26", "178.29.192.64/26", "178.29.192.128/26", "178.29.192.192/26", "178.29.193.0/26"]
+subnet_NameList    = ["snet01_eus2", "snet02_eus2", "snet03_eus2"]
+subnet_AddressList = ["178.29.192.0/26", "178.29.192.64/26", "178.29.192.128/26"]
 
 
 ### Virtual Machine Deployment

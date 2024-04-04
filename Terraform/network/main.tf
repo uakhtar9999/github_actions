@@ -17,6 +17,4 @@ resource "azurerm_subnet" "subnet" {
   virtual_network_name                           = azurerm_virtual_network.wec_vnet.name
   resource_group_name                            = azurerm_resource_group.rg.name
   address_prefixes                               = [var.subnet_AddressList[count.index]]
-  enforce_private_link_endpoint_network_policies = false
-  enforce_private_link_service_network_policies  = false
 }
