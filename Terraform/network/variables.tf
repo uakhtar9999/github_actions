@@ -30,12 +30,6 @@ variable "subnet_NameList" {
   type        = list(string)
   default     = [""]
   description = "List of subnet names inside the Vnet"
-  validation {
-    condition = alltrue([
-      for snet in var.subnet_NameList : length(snet) > 6 && can(regex("dev", lower(snet))) || can(regex("gate", lower(snet)))
-    ])
-    error_message = " The subnet_NameList must be valied name, should contain \" dev \". This can be configured in variables.tf file to streamline according to the environment."
-  }
 }
 variable "subnet_AddressList" {
   type        = list(string)
