@@ -46,17 +46,17 @@ jobs:
           action: validate
           directory: ${{env.ROOT_PATH}}
          
-      # - name: terraform plan # Generates Terraform execution plan
-      #   run: |
-      #     terraform plan -var-file=${{env.TFVARS_FILE}}
-      #   working-directory: ${{env.ROOT_PATH}}
-
-      # - name: terraform apply # Applies Terraform changes
-      #   run: |
-      #     terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
-      #   working-directory: ${{env.ROOT_PATH}}
-
-      - name: terraform destroy # Destroys terraform changes
+      - name: terraform plan # Generates Terraform execution plan
         run: |
-          terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
+          terraform plan -var-file=${{env.TFVARS_FILE}}
         working-directory: ${{env.ROOT_PATH}}
+
+      - name: terraform apply # Applies Terraform changes
+        run: |
+          terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
+        working-directory: ${{env.ROOT_PATH}}
+
+      # - name: terraform destroy # Destroys terraform changes
+      #   run: |
+      #     terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
+      #   working-directory: ${{env.ROOT_PATH}}
