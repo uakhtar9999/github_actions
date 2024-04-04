@@ -60,3 +60,4 @@ jobs:
         run: |
           terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
         working-directory: ${{env.ROOT_PATH}}
+        
