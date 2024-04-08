@@ -56,8 +56,8 @@ jobs:
           terraform apply -var-file=${{env.TFVARS_FILE}} -auto-approve
         working-directory: ${{env.ROOT_PATH}}
 
-      - name: terraform destroy # Destroys terraform changes
-        run: |
-          terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
-        working-directory: ${{env.ROOT_PATH}}
+      # - name: terraform destroy # Destroys terraform changes
+      #   run: |
+      #     terraform destroy -var-file=${{env.TFVARS_FILE}} -auto-approve
+      #   working-directory: ${{env.ROOT_PATH}}
         
