@@ -29,15 +29,15 @@ module "RG" {
 
 ############# 2. VNET & SUBNET Deployment Code #############
 
-# module "vnet01" {
-#   source             = "../Terraform/network"
-#   vnet_Name          = var.vnet_Name
-#   rg_Name            = var.rg_Name
-#   location           = var.location
-#   vnet_Address       = var.vnet_Address
-#   subnet_NameList    = var.subnet_NameList
-#   subnet_AddressList = var.subnet_AddressList
-# }
+module "vnet01" {
+  source             = "../Terraform/network"
+  vnet_Name          = var.vnet_Name
+  rg_Name            = var.rg_Name
+  location           = var.location
+  vnet_Address       = var.vnet_Address
+  subnet_NameList    = var.subnet_NameList
+  subnet_AddressList = var.subnet_AddressList
+}
 
 # ######### 3. Azure Linux Virtual Machine deployment #########
 
